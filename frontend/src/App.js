@@ -63,4 +63,4 @@ function App() {
 }
 
 export default App;
-export const API_URL = "https://blogging-app-jh4w.onrender.com/api/";
+export const API_URL = "https://blogging-app-jh4w.onrender.com/api";
