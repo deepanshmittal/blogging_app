@@ -46,8 +46,8 @@ class LoginUser(APIView):
                 }
                 response = Response()
                 response.data = user_data
-                response.set_cookie(key='jwt', value=token, httponly=True, domain='https://blogging-8di.pages.dev/',
-                                    samesite=False)
+                response.set_cookie(key='jwt', value=token, httponly=True, domain='.pages.dev',
+                                    samesite=None)
                 return response
 
 
