@@ -6,15 +6,17 @@ import { useCookies } from "react-cookie";
 export const AuthContext = createContext();
 axios.defaults.withCredentials = true;
 
-const [cookie, setCookie] = useCookies([]);
+
 
 export const AuthContextProvider = ({ children }) => {
+    const [cookie, setCookie] = useCookies([]);
     const [currentUser, setCurrentUser] = useState(
         JSON.parse(localStorage.getItem("user")) || null
     );
 
     const login = async (inputs) => {
         const response = await axios.post(`${API_URL}/login`, inputs);
+
         setCookie('jwt',response.data.jwt,{path:'/'})
         setCurrentUser(response.data);
     };
