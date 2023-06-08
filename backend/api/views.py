@@ -46,7 +46,8 @@ class LoginUser(APIView):
                 }
                 response = Response()
                 response.data = user_data
-                response.set_cookie(key='jwt', value=token, httponly=True,domain='https://blogging-8di.pages.dev/')
+                response.set_cookie(key='jwt', value=token, httponly=True, domain='https://blogging-8di.pages.dev/',
+                                    samesite=False)
                 return response
 
 
@@ -103,19 +104,19 @@ class SinglePost(APIView):
         if check:
             user = response
             # print(request.data)
-            serializer=BlogSerializer(data=request.data,context={'user':user})
+            serializer = BlogSerializer(data=request.data, context={'user': user})
             serializer.is_valid(raise_exception=True)
             serializer.save()
-            return Response(serializer.data,status=status.HTTP_201_CREATED)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
         else:
             return response
 
     def put(self, request, id):
         check, response = self.verify(request)
         if check:
-            blog=Blog.objects.get(id=id)
+            blog = Blog.objects.get(id=id)
             # print(request.data)
-            serializer=BlogSerializer(data=request.data,instance=blog)
+            serializer = BlogSerializer(data=request.data, instance=blog)
             serializer.is_valid(raise_exception=True)
             serializer.save()
             return Response(serializer.data)
