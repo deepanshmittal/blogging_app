@@ -53,14 +53,14 @@ class LoginUser(APIView):
                 return response
 
 
-class LogoutUser(APIView):
-    def post(self, request):
-        response = Response()
-        response.delete_cookie('jwt')
-        response.data = {
-            'message': 'success'
-        }
-        return response
+# class LogoutUser(APIView):
+#     def post(self, request):
+#         response = Response()
+#         response.delete_cookie('jwt')
+#         response.data = {
+#             'message': 'success'
+#         }
+#         return response
 
 
 class Posts(APIView):

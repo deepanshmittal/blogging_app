@@ -21,7 +21,7 @@ export const AuthContextProvider = ({ children }) => {
     };
 
     const logout = async () => {
-        await axios.post(`${API_URL}/logout`);
+        // await axios.post(`${API_URL}/logout`);
         removeCookie("jwt");
         setCurrentUser(null);
     };
