@@ -13,7 +13,7 @@ export const AuthContextProvider = ({ children }) => {
     );
 
     const login = async (inputs) => {
-        const response = await axios.post(`${API_URL}/login`, inputs);
+        var response = await axios.post(`${API_URL}/login`, inputs);
         setCookie("jwt", response.data.jwt, { path: "/" });
         console.log(response.data)
         response.data.remove('jwt');
