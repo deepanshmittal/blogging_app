@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Register.scss";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-
+import { API_URL } from "../../App";
 const Register = () => {
     const [inputs, setInputs] = useState({
         name: "",
@@ -23,7 +23,7 @@ const Register = () => {
         try {
             // const response = await axios.post("/register", inputs);
             // console.log(response);
-            await axios.post("/register", inputs);
+            await axios.post(`${API_URL}/register`, inputs);
             navigate("/login");
         } catch (error) {
             setErr(error.response.data.email[0]);

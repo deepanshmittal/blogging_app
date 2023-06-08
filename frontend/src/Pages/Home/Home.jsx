@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Home.scss";
 import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
-
+import { API_URL } from "../../App";
 // const posts = [
 //     {
 //         id: 1,
@@ -45,7 +45,7 @@ const Home = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`/posts${cat}`);
+                const response = await axios.get(`${API_URL}/posts${cat}`);
                 setPosts(response.data);
             } catch (err) {
                 console.log(err);
@@ -68,11 +68,11 @@ const Home = () => {
                             <img src={post.blog_img_url} alt="" />
                         </div>
                         <div className="content">
-                            <Link className="link" to={`/post/${post.id}`}>
+                            <Link className="link" to={`${API_URL}/post/${post.id}`}>
                                 <h1>{post.title}</h1>
                             </Link>
                             <p>{getText(post.description)}</p>
-                            <Link className="link" to={`/post/${post.id}`}>
+                            <Link className="link" to={`${API_URL}/post/${post.id}`}>
                                 <button>Read More...</button>
                             </Link>
                         </div>

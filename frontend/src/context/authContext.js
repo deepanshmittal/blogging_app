@@ -1,7 +1,7 @@
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { API_URL } from "../App";
 export const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
@@ -10,12 +10,12 @@ export const AuthContextProvider = ({ children }) => {
     );
 
     const login = async (inputs) => {
-        const response = await axios.post("https://blogging-app-jh4w.onrender.com/api/login", inputs);
+        const response = await axios.post(`${API_URL}/login`, inputs);
         setCurrentUser(response.data);
     };
 
     const logout = async () => {
-        await axios.post("https://blogging-app-jh4w.onrender.com/api/logout");
+        await axios.post(`${API_URL}/logout`);
         setCurrentUser(null);
     };
 

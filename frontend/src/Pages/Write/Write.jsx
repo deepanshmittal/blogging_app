@@ -7,7 +7,7 @@ import { storage } from "../../firebase";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { v4 } from "uuid";
 import { useLocation, useNavigate } from "react-router-dom";
-
+import { API_URL } from '../../App';
 const Write = () => {
     const state = useLocation().state;
     const navigate = useNavigate();
@@ -34,13 +34,13 @@ const Write = () => {
         e.preventDefault();
         try {
             state
-                ? await axios.put(`/post/${state.id}`, {
+                ? await axios.put(`${API_URL}/post/${state.id}`, {
                       category: cat,
                       title: title,
                       description: desc,
                       blog_img_url: blog_img_url,
                   })
-                : await axios.post(`/post`, {
+                : await axios.post(`${API_URL}/post`, {
                       category: cat,
                       title: title,
                       description: desc,

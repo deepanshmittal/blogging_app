@@ -10,6 +10,7 @@ import profile_img from "../../assets/profile_img.png";
 import blog_img from "../../assets/blog_img.png";
 import { AuthContext } from "../../context/authContext";
 import DOMPurify from "dompurify";
+import { API_URL } from "../../App";
 
 const Single = () => {
     const [post, setPost] = useState({});
@@ -23,7 +24,7 @@ const Single = () => {
 
     const handleDelete = async () => {
         try {
-            await axios.delete(`/post/${postId}`);
+            await axios.delete(`${API_URL}/post/${postId}`);
             navigate("/");
         } catch (err) {
             console.log(err);
@@ -33,7 +34,7 @@ const Single = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`/post/${postId}`);
+                const response = await axios.get(`${API_URL}/post/${postId}`);
                 setPost(response.data);
             } catch (err) {
                 console.log(err);

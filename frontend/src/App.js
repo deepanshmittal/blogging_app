@@ -1,4 +1,4 @@
-// "proxy": "https://blogging-app-jh4w.onrender.com/api/"
+// https://stackoverflow.com/questions/69955965/proxying-api-requests-in-production-for-react-express-app
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import Home from "./Pages/Home/Home";
 import Login from "./Pages/Login/Login";
@@ -7,7 +7,7 @@ import Single from "./Pages/Single/Single";
 import Write from "./Pages/Write/Write";
 import Footer from "./components/Footer/Footer";
 import Navbar from "./components/Navbar/Navbar";
-import './App.scss'
+import "./App.scss";
 
 const Layout = () => {
     return (
@@ -63,3 +63,4 @@ function App() {
 }
 
 export default App;
+export const API_URL = "https://blogging-app-jh4w.onrender.com/api/";
