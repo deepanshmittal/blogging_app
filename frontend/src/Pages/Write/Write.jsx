@@ -36,6 +36,7 @@ const Write = () => {
         const blog_img_url = await uploadImage();
         e.preventDefault();
         try {
+            console.log(cookies.get("jwt"));
             state
                 ? await axios.put(`${API_URL}/post/${state.id}`, {
                       category: cat,
