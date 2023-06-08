@@ -46,7 +46,8 @@ class LoginUser(APIView):
                 }
                 response = Response()
                 response.data = user_data
-                response.set_cookie(key='jwt', value=token, httponly=True, samesite=None)
+                response.set_cookie(key='jwt', value=token, httponly=True, samesite=None,
+                                    domain='blogging-app-mu.vercel.app')
                 return response
 
 
