@@ -9,7 +9,7 @@ axios.defaults.withCredentials = true;
 
 
 export const AuthContextProvider = ({ children }) => {
-    const [cookie, setCookie] = useCookies(['jwt']);
+    const [cookies, setCookie,removeCookie] = useCookies(['jwt']);
     const [currentUser, setCurrentUser] = useState(
         JSON.parse(localStorage.getItem("user")) || null
     );
@@ -22,6 +22,7 @@ export const AuthContextProvider = ({ children }) => {
 
     const logout = async () => {
         await axios.post(`${API_URL}/logout`);
+        removeCookie('jwt')
         setCurrentUser(null);
     };
 
