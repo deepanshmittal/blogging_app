@@ -75,7 +75,9 @@ class Posts(APIView):
 class SinglePost(APIView):
     def verify(self, request):
         token = request.COOKIES.get('jwt')
+        print(request.COOKIES)
         if not token:
+            print("no token",token)
             raise NotAuthenticated("User not Logged In")
         try:
             payload = jwt.decode(token, 'secret', algorithms='HS256')
