@@ -2,8 +2,11 @@ import axios from "axios";
 import { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { API_URL } from "../App";
+import { useCookies } from "react-cookie";
 export const AuthContext = createContext();
 axios.defaults.withCredentials = true;
+
+const [cookie, setCookie] = useCookies([]);
 
 export const AuthContextProvider = ({ children }) => {
     const [currentUser, setCurrentUser] = useState(
@@ -12,6 +15,7 @@ export const AuthContextProvider = ({ children }) => {
 
     const login = async (inputs) => {
         const response = await axios.post(`${API_URL}/login`, inputs);
+        setCookie('jwt',response.data.jwt,{path:'/'})
         setCurrentUser(response.data);
     };
 

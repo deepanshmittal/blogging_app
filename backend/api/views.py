@@ -24,6 +24,7 @@ class LoginUser(APIView):
         email = request.data['email']
         password = request.data['password']
         user = User.objects.filter(email=email).first()
+        print(request.get('origin'))
 
         if user is None:
             raise AuthenticationFailed('Incorrect Email!')
@@ -46,9 +47,9 @@ class LoginUser(APIView):
                 }
                 response = Response()
                 response.data = user_data
-                response.set_cookie(key='jwt', value=token, httponly=True)
+                # response.set_cookie(key='jwt', value=token, httponly=True)
                 # response.set_cookie(key='jwt', value=token, httponly=True, samesite=None,domain='blogging-app-mu.vercel.app')
-                # response.data['jwt'] = token
+                response.data['jwt'] = token
                 return response
 
 
