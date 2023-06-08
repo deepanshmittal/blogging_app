@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { API_URL } from "../App";
 import { useCookies } from "react-cookie";
 export const AuthContext = createContext();
-axios.defaults.withCredentials = true;
 
 export const AuthContextProvider = ({ children }) => {
     const [cookies, setCookie, removeCookie] = useCookies(["jwt"]);
@@ -13,7 +12,9 @@ export const AuthContextProvider = ({ children }) => {
     );
 
     const login = async (inputs) => {
-        const response = await axios.post(`${API_URL}/login`, inputs);
+        const response = await axios.post(`${API_URL}/login`, inputs, {
+            withCredentials: true,
+        });
         setCookie("jwt", response.data.jwt, { path: "/" });
         // console.log(response.data)
         delete response.data.jwt;

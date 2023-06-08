@@ -24,7 +24,7 @@ const Single = () => {
 
     const handleDelete = async () => {
         try {
-            await axios.delete(`${API_URL}/post/${postId}`);
+            await axios.delete(`${API_URL}/post/${postId}`,{ withCredentials: true });
             navigate("/");
         } catch (err) {
             console.log(err);
