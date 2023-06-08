@@ -68,11 +68,11 @@ const Home = () => {
                             <img src={post.blog_img_url} alt="" />
                         </div>
                         <div className="content">
-                            <Link className="link" to={`${API_URL}/post/${post.id}`}>
+                            <Link className="link" to={`/post/${post.id}`}>
                                 <h1>{post.title}</h1>
                             </Link>
                             <p>{getText(post.description)}</p>
-                            <Link className="link" to={`${API_URL}/post/${post.id}`}>
+                            <Link className="link" to={`/post/${post.id}`}>
                                 <button>Read More...</button>
                             </Link>
                         </div>
