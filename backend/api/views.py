@@ -24,7 +24,7 @@ class LoginUser(APIView):
         email = request.data['email']
         password = request.data['password']
         user = User.objects.filter(email=email).first()
-        print(request.get('origin'))
+        print(request.POST.get('origin'))
 
         if user is None:
             raise AuthenticationFailed('Incorrect Email!')

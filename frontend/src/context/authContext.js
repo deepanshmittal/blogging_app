@@ -9,14 +9,13 @@ axios.defaults.withCredentials = true;
 
 
 export const AuthContextProvider = ({ children }) => {
-    const [cookie, setCookie] = useCookies([]);
+    const [cookie, setCookie] = useCookies(['jwt']);
     const [currentUser, setCurrentUser] = useState(
         JSON.parse(localStorage.getItem("user")) || null
     );
 
     const login = async (inputs) => {
         const response = await axios.post(`${API_URL}/login`, inputs);
-
         setCookie('jwt',response.data.jwt,{path:'/'})
         setCurrentUser(response.data);
     };
