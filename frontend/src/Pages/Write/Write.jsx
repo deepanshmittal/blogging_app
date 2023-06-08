@@ -7,10 +7,13 @@ import { storage } from "../../firebase";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { v4 } from "uuid";
 import { useLocation, useNavigate } from "react-router-dom";
-import { API_URL } from '../../App';
+import { API_URL } from "../../App";
+import { Cookies } from "react-cookie";
+
 const Write = () => {
     const state = useLocation().state;
     const navigate = useNavigate();
+    const cookies = new Cookies();
     const [title, setTitle] = useState(state?.title || "");
     const [desc, setDesc] = useState(state?.description || "");
     const [image, setImage] = useState(null);
@@ -22,7 +25,7 @@ const Write = () => {
             const imageRef = ref(storage, `Blogs/${image.name + v4()}`);
             await uploadBytes(imageRef, image);
             const blog_img_url = await getDownloadURL(imageRef);
-            console.log(blog_img_url)
+            console.log(blog_img_url);
             return blog_img_url;
         } catch (err) {
             console.log(err);
@@ -39,12 +42,14 @@ const Write = () => {
                       title: title,
                       description: desc,
                       blog_img_url: blog_img_url,
+                      jwt: cookies.get("jwt") || null,
                   })
                 : await axios.post(`${API_URL}/post`, {
                       category: cat,
                       title: title,
                       description: desc,
                       blog_img_url: blog_img_url,
+                      jwt: cookies.get("jwt") || null,
                   });
             navigate("/");
         } catch (err) {
@@ -56,7 +61,7 @@ const Write = () => {
         setDesc(state?.description || "");
         setTitle(state?.title || "");
         setCat(state?.category || "");
-      }, [state]);
+    }, [state]);
 
     return (
         <div className="add">

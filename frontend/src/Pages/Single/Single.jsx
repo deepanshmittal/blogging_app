@@ -11,10 +11,11 @@ import blog_img from "../../assets/blog_img.png";
 import { AuthContext } from "../../context/authContext";
 import DOMPurify from "dompurify";
 import { API_URL } from "../../App";
+import { Cookies } from "react-cookie";
 
 const Single = () => {
     const [post, setPost] = useState({});
-
+    const cookies = new Cookies();
     const location = useLocation();
     const navigate = useNavigate();
     // console.log(location)
@@ -24,7 +25,9 @@ const Single = () => {
 
     const handleDelete = async () => {
         try {
-            await axios.delete(`${API_URL}/post/${postId}`,{ withCredentials: true });
+            await axios.delete(`${API_URL}/post/${postId}`, {
+                jwt: cookies.get("jwt") || null,
+            });
             navigate("/");
         } catch (err) {
             console.log(err);

@@ -24,7 +24,7 @@ class LoginUser(APIView):
         email = request.data['email']
         password = request.data['password']
         user = User.objects.filter(email=email).first()
-        print(request.POST.get('origin',"not found"))
+        print(request.POST.get('origin', "not found"))
 
         if user is None:
             raise AuthenticationFailed('Incorrect Email!')
@@ -74,7 +74,9 @@ class Posts(APIView):
 
 class SinglePost(APIView):
     def verify(self, request):
-        token = request.COOKIES.get('jwt')
+        # token = request.COOKIES.get('jwt')
+        token = request.data.pop('jwt', None)
+
         # print(request.COOKIES)
         if not token:
             # print("no token",token)
@@ -108,6 +110,7 @@ class SinglePost(APIView):
         if check:
             user = response
             # print(request.data)
+            request.data.pop('jwt', None)
             serializer = BlogSerializer(data=request.data, context={'user': user})
             serializer.is_valid(raise_exception=True)
             serializer.save()
@@ -120,6 +123,7 @@ class SinglePost(APIView):
         if check:
             blog = Blog.objects.get(id=id)
             # print(request.data)
+            request.data.pop('jwt', None)
             serializer = BlogSerializer(data=request.data, instance=blog)
             serializer.is_valid(raise_exception=True)
             serializer.save()
