@@ -1,3 +1,4 @@
+// "proxy": "https://blogging-app-jh4w.onrender.com/api/"
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import Home from "./Pages/Home/Home";
 import Login from "./Pages/Login/Login";

@@ -10,12 +10,12 @@ export const AuthContextProvider = ({ children }) => {
     );
 
     const login = async (inputs) => {
-        const response = await axios.post("/login", inputs);
+        const response = await axios.post("https://blogging-app-jh4w.onrender.com/api/login", inputs);
         setCurrentUser(response.data);
     };
 
     const logout = async () => {
-        await axios.post("/logout");
+        await axios.post("https://blogging-app-jh4w.onrender.com/api/logout");
         setCurrentUser(null);
     };
 
