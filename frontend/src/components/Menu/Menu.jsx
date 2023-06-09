@@ -43,6 +43,7 @@ const Menu = ({cat}) => {
             try {
                 const response = await axios.get(`/posts?cat=${cat}`);
                 setPosts(response.data);
+                console.log(posts)
             } catch (err) {
                 console.log(err);
             }
@@ -56,9 +57,9 @@ const Menu = ({cat}) => {
                 <div className="post" key={post.id}>
                     <img src={post.blog_img_url} alt="" />
                     <h2>{post.title}</h2>
-                    <Link to={`/post/${post.id}`}>
+                    {/* <Link to={`/post/${post.id}`}>
                         <button>Read More...</button>
-                    </Link>
+                    </Link> */}
                 </div>
             ))}
         </div>
