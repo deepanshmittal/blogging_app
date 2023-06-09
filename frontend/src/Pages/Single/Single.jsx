@@ -65,7 +65,7 @@ const Single = () => {
                         <span style={{ textTransform: "capitalize" }}>
                             {post.user_name}
                         </span>
-                        <p>Posted {moment(post.updated_on).fromNow()}</p>
+                        <p>Posted {moment.utc(post.updated_on).fromNow()}</p>
                     </div>
                     {currentUser && currentUser.id === post.user_id && (
                         <div className="edit">

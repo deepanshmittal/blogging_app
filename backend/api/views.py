@@ -66,7 +66,7 @@ class LoginUser(APIView):
 class Posts(APIView):
     def get(self, request):
         cat = request.GET.get('cat')
-        blogs = Blog.objects.all()
+        blogs = Blog.objects.all().order_by('-updated_on')
         if cat:
             blogs = blogs.filter(category__iexact=cat)
         return JsonResponse(list(blogs.values()), safe=False)
