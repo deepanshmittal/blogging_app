@@ -25,7 +25,7 @@ const Single = () => {
 
     const handleDelete = async () => {
         try {
-            console.log(cookies.get("jwt"));
+            // console.log(cookies.get("jwt"));
             await axios.delete(`${API_URL}/post/${postId}`, {
                 data: { jwt: cookies.get("jwt") || null },
             });
