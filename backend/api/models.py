@@ -22,4 +22,4 @@ class Blog(models.Model):
     title = models.CharField(max_length=255)
     description = models.CharField(max_length=10**6)
     blog_img_url = models.URLField(null=True)
-    updated_on = models.DateField(auto_now=True)
+    updated_on = models.DateTimeField(auto_now=True)
