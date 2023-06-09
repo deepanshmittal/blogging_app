@@ -85,9 +85,9 @@ const Single = () => {
                         __html: DOMPurify.sanitize(post.description),
                     }}></p>
             </div>
-            {/* <div className="menu">
+            <div className="menu">
                 <Menu cat={post.category} />
-            </div> */}
+            </div>
         </div>
     );
 };

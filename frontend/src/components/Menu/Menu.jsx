@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Menu.scss";
 import { Link } from "react-router-dom";
 import axios from "axios";
-
+import { API_URL } from "../../App";
 // const posts = [
 //     {
 //         id: 1,
@@ -41,7 +41,7 @@ const Menu = ({cat}) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`/posts?cat=${cat}`);
+                const response = await axios.get(`${API_URL}/posts?cat=${cat}`);
                 setPosts(response.data);
                 console.log(posts)
             } catch (err) {
@@ -57,9 +57,9 @@ const Menu = ({cat}) => {
                 <div className="post" key={post.id}>
                     <img src={post.blog_img_url} alt="" />
                     <h2>{post.title}</h2>
-                    {/* <Link to={`/post/${post.id}`}>
+                    <Link to={`/post/${post.id}`}>
                         <button>Read More...</button>
-                    </Link> */}
+                    </Link>
                 </div>
             ))}
         </div>
