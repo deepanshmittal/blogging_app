@@ -67,7 +67,7 @@ const Single = () => {
                         </span>
                         <p>Posted {moment(post.updated_on).fromNow()}</p>
                     </div>
-                    {currentUser.id === post.user_id && (
+                    {currentUser && currentUser.id === post.user_id && (
                         <div className="edit">
                             <Link to={`/write?edit=${postId}`} state={post}>
                                 <img src={edit_img} alt="" />
