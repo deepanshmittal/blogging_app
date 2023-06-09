@@ -27,7 +27,7 @@ const Single = () => {
         try {
             console.log(cookies.get("jwt"));
             await axios.delete(`${API_URL}/post/${postId}`, {
-                jwt: cookies.get("jwt") || null,
+                data: { jwt: cookies.get("jwt") || null },
             });
             navigate("/");
         } catch (err) {
