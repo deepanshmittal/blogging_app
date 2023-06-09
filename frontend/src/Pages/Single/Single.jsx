@@ -18,13 +18,14 @@ const Single = () => {
     const cookies = new Cookies();
     const location = useLocation();
     const navigate = useNavigate();
-    console.log(location)
+    // console.log(location);
     const postId = location.pathname.split("/")[2];
 
     const { currentUser } = useContext(AuthContext);
 
     const handleDelete = async () => {
         try {
+            console.log(cookies.get("jwt"));
             await axios.delete(`${API_URL}/post/${postId}`, {
                 jwt: cookies.get("jwt") || null,
             });
@@ -83,7 +84,8 @@ const Single = () => {
                 <p
                     dangerouslySetInnerHTML={{
                         __html: DOMPurify.sanitize(post.description),
-                    }}></p>
+                    }}
+                ></p>
             </div>
             <div className="menu">
                 <Menu cat={post.category} />
