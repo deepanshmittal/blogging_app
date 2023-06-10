@@ -24,10 +24,10 @@ class BlogSerializer(serializers.ModelSerializer):
     # user=UserSerializer()
     class Meta:
         model = Blog
-        exclude= ['user']
+        exclude = ['user']
         # depth=1
 
-    def create(self,validate_data):
-        instance=self.Meta.model(**validate_data,user=self.context['user'])
+    def create(self, validate_data):
+        instance = self.Meta.model(**validate_data, user=self.context['user'])
         instance.save()
         return instance
